@@ -75,23 +75,23 @@ Access the instance URL in your browser. In our case it is `http://vox.kms-techn
 
 The default credential for administration is `admin` and `pass` seriated by username and password.
 
-*The login screen may varies between different versions with different themes*
+*The login screen may vary between different versions with different themes*
 
-![OpenEMR Login Screen](./pictures/login.png)
+![OpenEMR Login Screen](https://user-images.githubusercontent.com/49594981/119623910-d53b2f00-be32-11eb-933c-abd486817582.png)
 
 After logging in, you are presented with the homepage. Navigate to **Administration** > **System** > **API Clients**. 
-You will be presented with the Client Registrations screen. Find your registered application with the **Client Name / Client ID** matches to `client_name` and `client_id` on the previous step.
+You will be presented with the Client Registrations screen. Find your registered application with the **Client Name / Client ID** matches the `client_name` and `client_id` on the previous step.
 
 If the **Enabled** field has the value `Enabled` for your application by default. Then you are good to the next step.
 
 If not, click on **Edit** button on your application, click **Enable Client** and then check if your application is enabled.
 
-![OpenEMR API Client Screen](./pictures/api_clients.png)
+![OpenEMR API Client Screen](https://user-images.githubusercontent.com/49594981/119623994-e8e69580-be32-11eb-9fbe-83e14f87e6bd.png)
 
 
-#### Run the application
+#### Run the OpenEMR application
 
-There is an `application.yaml` file that exists in `src/main/resources`. This file contains many configurable properties, but we are only concenered with these properties:
+There is an `application.yaml` file that exists in `hapi-fhir-open-emr/src/main/resources`. This file contains many configurable properties, but we are only concenered with these properties:
 ```yaml
 openemr:
   token_url: "http://vox.kms-technology.com/oauth2/default/token"
@@ -114,7 +114,7 @@ openemr:
 
 #### OpenEMR Data Generation
 
-There is an `application.properties` file that exists in `src/main/resources`. Within this field contains the configuration for the patient generate application.
+There is an `application.properties` file that exists in `hapi-fhir-open-emr-generate/src/main/resources`. Within this field contains the configuration for the patient generate application.
 
 ```properties
 openemr.population = 10
