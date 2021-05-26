@@ -105,8 +105,11 @@ openemr:
 ```
 
 `token_url` is the required URL for the application to get an OpenEMR access token. Depends on your running OpenEMR instance, this value can be changed accordingly.
+
 `api_url` is the base OpenEMR API route that the application interacts with. Depends on your running OpenEMR instance, this value can be changed accordingly.
+
 `client_id` is the one you replace its with the `client_id` value you got from the previous step.
+
 `scope` specifies the permission of the the application. If the registration `scope` was changed, change this value accordingly.
 
 #### OpenEMR Data Generation
@@ -126,7 +129,11 @@ openemr.password = pass
 ```
 
 `population` stands for the number of patients that will be created. Change this according to your needs
+
 `token_url` is the required URL for the application to get an OpenEMR access token. Depends on your running OpenEMR instance, this value can be changed accordingly.
+
 `fhir_url` is the base OpenEMR FHIR API route that the application interacts with. Depends on your running OpenEMR instance, this value can be changed accordingly.
+
 `client_id` is the application id on the OpenEMR system. This can be found by re-doing the registration step or re-using existed `client_id` on the system.
+
 `scope` specifies the permission of the data generation permission. Can be changed accordingly, but require one specific scope `api:fhir` to be present regardless the cases.
