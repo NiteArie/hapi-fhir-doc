@@ -6,8 +6,13 @@
 
 *Assuming that we are running our application instance at http://localhost:8080/openemr*
 
-#### Patient 
+#### Overview
 
+*Currently supported operations*
+
+![HAPI FHIR - OpenEMR Features](https://user-images.githubusercontent.com/49594981/119809040-e8bbc800-bf0e-11eb-9cef-0aa59a2fe08f.png)
+
+#### Patient 
 
 ##### GET /Patient/
 
@@ -15,6 +20,8 @@ Search for patients that match with the search parameter
 
 * Supported query parameters
     * family
+
+![OpenAPI Visual](https://user-images.githubusercontent.com/49594981/119809164-038e3c80-bf0f-11eb-844a-70738ad1dcc4.png)
 
 Request example:
 
@@ -31,6 +38,8 @@ Response:
 
 Get detail view of a patient with all fields in compliance with FHIR
 
+![OpenAPI Visual](https://user-images.githubusercontent.com/49594981/119809298-2a4c7300-bf0f-11eb-8ae2-4d1b0215822a.png)
+
 Request example:
 
 ```sh
@@ -42,6 +51,10 @@ Response:
 ![Response Example](https://user-images.githubusercontent.com/49594981/119791321-ec475300-befe-11eb-937b-ea6684210975.png)
 
 ##### PUT /Patient/:id
+
+Update a patient with specified data in compliance with FHIR
+
+![OpenAPI Visual](https://user-images.githubusercontent.com/49594981/119809376-405a3380-bf0f-11eb-8adc-47d194bf7745.png)
 
 Request example:
 
@@ -73,6 +86,8 @@ Response:
 ##### POST /Patient
 
 Create a new patient with the specified data.
+
+![OpenAPI Visual](https://user-images.githubusercontent.com/49594981/119809534-6aabf100-bf0f-11eb-8a6e-65b70fcb6ce6.png)
 
 Request example: 
 
@@ -115,6 +130,8 @@ Response
 ##### POST /Schedule
 
 Create a new schedule with the specified data
+
+![OpenAPI Visual](https://user-images.githubusercontent.com/49594981/119809615-7eefee00-bf0f-11eb-87ed-b39ff1dc4dfd.png)
 
 Request:
 
