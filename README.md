@@ -2,6 +2,186 @@
 
 ## HAPI FHIR with OpenEMR
 
+### Features
+
+*Assuming that we are running our application instance at http://localhost:8080/openemr*
+
+#### Patient 
+
+
+##### GET /Patient/
+
+Search for patients that match with the search parameter
+
+* Supported query parameters
+    * family
+
+Request example:
+
+```sh
+curl -X GET 'http://localhost:8080/openemr/Patient/?family=Chalmers'
+```
+
+Response:
+
+![Response Example](https://user-images.githubusercontent.com/49594981/119791068-ad190200-befe-11eb-8067-235ce159c02b.png)
+
+
+##### GET /Patient/:id
+
+Get detail view of a patient with all fields in compliance with FHIR
+
+Request example:
+
+```sh
+curl -X GET 'http://localhost:8080/openemr/Patient/938171bb-a8cc-4ecd-94b6-fb0e7cb12513'
+```
+
+Response:
+
+![Response Example](https://user-images.githubusercontent.com/49594981/119791321-ec475300-befe-11eb-937b-ea6684210975.png)
+
+##### PUT /Patient/:id
+
+Request example:
+
+```sh
+curl -X PUT 'http://localhost:8080/openemr/Patient/938171bb-a8cc-4ecd-94b6-fb0e7cb12513' -d \
+'{
+  "resourceType": "Patient",
+  "id": "1",
+  "identifier": [ { "system": "urn:oid:1.2.36.146.595.217.0.1", "value": "12345" } ],
+  "name": [ {
+      "family": "Chalmers",
+      "given": [ "Peter", "James" ]
+  } ],
+  "gender": "male",
+  "birthDate": "1974-01-13",
+  "address": [ {
+      "line": [ "534 Erewhon St" ],
+      "city": "PleasantVille",
+      "state": "Vic",
+      "postalCode": "3999"
+  } ]
+}'
+```
+
+Response:
+
+![Response Example](https://user-images.githubusercontent.com/49594981/119791388-fc5f3280-befe-11eb-9b85-e5a521a21400.png)
+
+##### POST /Patient
+
+Create a new patient with the specified data.
+
+Request example: 
+
+```sh
+curl -X POST 'http://localhost:8080/openemr/Patient' -d \
+'{
+    "resourceType": "Patient",
+    "identifier": [
+        {
+            "system": "urn:oid:1.2.36.146.595.217.0.1",
+            "value": "12345"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "family": "Chalmers",
+            "given": ["Peter", "James"]
+        }
+    ],
+    "gender": "male",
+    "birthDate": "1974-12-25",
+    "address": [ 
+        {
+            "line": [ "534 Erewhon St" ],
+            "city": "PleasantVille",
+            "state": "Vic",
+            "postalCode": "3999"
+        } 
+    ]
+}'
+```
+
+Response
+
+![Response Example](https://user-images.githubusercontent.com/49594981/119791478-10a32f80-beff-11eb-9d86-9e169135531b.png)
+
+#### Schedule
+
+##### POST /Schedule
+
+Create a new schedule with the specified data
+
+Request:
+
+```sh
+curl -X POST 'http://localhost:8080/openemr/Schedule' -d \
+'{
+    "resourceType": "Schedule",
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      Dr. Beverly Crusher - Starfleet HQ Sickbay Schedule\n\t\t</div>"
+    },
+    "identifier": [
+        {
+            "use": "usual",
+            "system": "http://example.org/scheduleid",
+            "value": "47"
+        }
+    ],
+    "active": true,
+    "serviceCategory": [
+        {
+            "coding": [
+                {
+                    "code": "31",
+                    "display": "Specialist Surgical"
+                }
+            ]
+        }
+    ],
+    "serviceType": [
+        {
+            "coding": [
+                {
+                    "code": "221",
+                    "display": "Surgery - General"
+                }
+            ]
+        }
+    ],
+    "specialty": [
+        {
+            "coding": [
+                {
+                    "code": "394610002",
+                    "display": "Surgery-Neurosurgery"
+                }
+            ]
+        }
+    ],
+    "actor": [
+        {
+            "reference": "Patient/93797190-3970-4119-9996-df67ef92369a",
+            "display": "Belford Phil"
+        }
+    ],
+    "planningHorizon": {
+        "start": "2021-05-21T09:15:00Z",
+        "end": "2021-05-21T09:30:00Z"
+    },
+    "comment": "The slots attached to this schedule are for neurosurgery operations at Starfleet HQ only."
+}'
+```
+
+Response
+
+![Response Example](https://user-images.githubusercontent.com/49594981/119791638-316b8500-beff-11eb-84b1-4c5bef6c9b1e.png)
+
 ### Guideline
 
 #### Registering the application to OpenEMR server instance
@@ -113,6 +293,8 @@ openemr:
 `scope` specifies the permission of the the application. If the registration `scope` was changed, change this value accordingly.
 
 #### OpenEMR Data Generation
+
+*Application should be run be with Java 11*
 
 There is an `application.properties` file that exists in `hapi-fhir-open-emr-generate/src/main/resources`. Within this field contains the configuration for the patient generate application.
 
